@@ -1,1 +1,816 @@
-{  "swagger": "2.0",  "info": {    "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters. types by https://swagger.io/docs/specification/data-models/data-types",    "version": "1.0.7",    "title": "Swagger",    "termsOfService": "http://swagger.io/terms/",    "contact": {      "email": "apiteam@swagger.io"    },    "license": {      "name": "Apache 2.0",      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"    }  },  "host": "login.timesapp.biz",  "basePath": "/",  "tags": [    {      "name": "users",      "description": "Operations about users tasks",      "externalDocs": {        "description": "Find out more about our store",        "url": "http://swagger.io"      }    }  ],  "schemes": [    "https",    "http"  ],  "paths": {    "/users/{userId}": {      "get": {        "tags": [          "users"        ],        "summary": "Get user by user name",        "description": "",        "operationId": "getUserByName",        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          },          {            "name": "type",            "in": "query",            "description": "The type that needs to be fetched. Use getListById / getTaskById / getListAndTasksById",            "required": false,            "type": "string"          },          {            "name": "tasklistId",            "in": "query",            "description": "The tasklistId that needs to be fetched.",            "required": false,            "type": "string"          },          {            "name": "taskId",            "in": "query",            "description": "The taskId that needs to be fetched.",            "required": false,            "type": "string"          }        ],        "responses": {          "200": {            "description": "successful operation"          },          "400": {            "description": "Invalid username supplied"          },          "404": {            "description": "User not found"          },          "500": {            "description": "User not found"          }        }      },      "delete": {        "tags": [          "users"        ],        "summary": "Delete user",        "description": "This can only be done by the logged in user. ",        "operationId": "deleteUser",        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          },          {            "name": "type",            "in": "query",            "description": "The type: clearAllTasks / deleteTask / deleteOneList / ",            "required": true,            "type": "string"          },          {            "name": "tasklistId",            "in": "query",            "description": "The tasklistId that needs to be deleted",            "required": true,            "type": "string"          },          {            "name": "taskId",            "in": "query",            "description": "The name that needs to be deleted",            "required": false,            "type": "string"          }        ],        "responses": {          "400": {            "description": "Invalid username supplied"          },          "404": {            "description": "User not found"          }        }      }    },    "/users/add-task-list/{userId}": {      "post": {        "tags": [          "users"        ],        "summary": "Place an order for a pet",        "description": "",        "operationId": "userId",        "consumes": [          "application/json"        ],        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          },          {            "in": "body",            "name": "requestBody",            "description": "order placed for purchasing the pet",            "required": true,            "schema": {              "$ref": "#/definitions/AddTaskList"            }          }        ],        "responses": {          "200": {            "description": "successful operation",            "schema": {              "$ref": "#/definitions/TaskLists"            }          },          "400": {            "description": "Invalid Order"          }        }      }    },    "/users/update-task-list/{userId}": {      "patch": {        "tags": [          "users"        ],        "summary": "Place an order for a pet",        "description": "",        "operationId": "userId",        "consumes": [          "application/json"        ],        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          },          {            "in": "body",            "name": "requestBody",            "description": "order placed for purchasing the pet",            "required": true,            "schema": {              "$ref": "#/definitions/UpdateTaskList"            }          },          {            "in": "body",            "name": "tasklistId",            "description": "order placed for purchasing the pet",            "required": true,            "schema": {              "type": "string"            }          }        ],        "responses": {          "200": {            "description": "successful operation",            "schema": {              "$ref": "#/definitions/TaskLists"            }          },          "400": {            "description": "Invalid Order"          }        }      }    },    "/users/add-task/{userId}": {      "post": {        "tags": [          "users"        ],        "summary": "Place an order for a pet",        "description": "",        "operationId": "userId",        "consumes": [          "application/json"        ],        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          },          {            "in": "body",            "name": "requestBody",            "description": "order placed for purchasing the pet",            "required": true,            "schema": {              "$ref": "#/definitions/AddTask"            }          }        ],        "responses": {          "200": {            "description": "successful operation",            "schema": {              "$ref": "#/definitions/Tasks"            }          },          "400": {            "description": "Invalid Order"          }        }      }    },    "/users/update-task/{userId}": {      "patch": {        "tags": [          "users"        ],        "summary": "Place an order for a pet",        "description": "",        "operationId": "userId",        "consumes": [          "application/json"        ],        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          },          {            "in": "body",            "name": "body",            "description": "order placed for purchasing the pet",            "required": true,            "schema": {              "$ref": "#/definitions/UpdateTask"            }          }        ],        "responses": {          "200": {            "description": "successful operation",            "schema": {              "$ref": "#/definitions/Tasks"            }          },          "400": {            "description": "Invalid Order"          }        }      }    },    "/users/calendar-next-hour-events-list/{userId}": {      "get": {        "tags": [          "users"        ],        "summary": "Get calendar-next-hour-events-list of user",        "description": "",        "operationId": "getUserByName",        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          }        ],        "responses": {          "200": {            "description": "successful operation"          },          "400": {            "description": "Invalid username supplied"          },          "404": {            "description": "User not found"          },          "500": {            "description": "User not found"          }        }      }    },    "/users/calendar-list/{userId}": {      "get": {        "tags": [          "users"        ],        "summary": "Get calendar-list of user",        "description": "",        "operationId": "getUserByName",        "produces": [          "application/json"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          }        ],        "responses": {          "200": {            "description": "successful operation"          },          "400": {            "description": "Invalid username supplied"          },          "404": {            "description": "User not found"          },          "500": {            "description": "User not found"          }        }      }    },    "/users/speech-to-text/{userId}": {      "post": {        "tags": [          "users"        ],        "summary": "Speech-to-text",        "description": "",        "operationId": "userId",        "consumes": [          "application/json"        ],        "produces": [          "application/text"        ],        "parameters": [          {            "name": "userId",            "in": "path",            "description": "ID of userId to return",            "required": true,            "type": "string"          },          {            "in": "body",            "name": "audioUrl",            "description": "audioUrl",            "required": true,            "schema": {              "$ref": "#/definitions/AudioUrl"            }          }        ],        "responses": {          "200": {            "description": "successful operation",            "schema": {              "$ref": "#/definitions/TaskLists"            }          },          "400": {            "description": "Invalid Order"          }        }      }    },    "/updateAllUsersByUpdatedTasks": {      "get": {        "tags": [          "updateAllUsersByUpdatedTasks"        ],        "summary": "updateAllUsersByUpdatedTasks",        "description": "updateAllUsersByUpdatedTasks running a task every 20 min job",        "responses": {          "200": {            "description": "successful operation"          },          "400": {            "description": "Invalid username supplied"          },          "404": {            "description": "User not found"          },          "500": {            "description": "User not found"          }        }      }    },    "/getAllTasksDueTodayOfAllUsers": {      "get": {        "tags": [          "getAllTasksDueTodayOfAllUsers"        ],        "summary": "getAllTasksDueTodayOfAllUsers",        "description": "getAllTasksDueTodayOfAllUsers running a task every day at 8:00 am - Asia/Tel_Aviv timezone",        "responses": {          "200": {            "description": "successful operation"          },          "400": {            "description": "Invalid username supplied"          },          "404": {            "description": "User not found"          },          "500": {            "description": "User not found"          }        }      }    },    "/getAllCalendarEventsDueNextHourTodayOfAllUsers": {      "get": {        "tags": [          "getAllCalendarEventsDueNextHourTodayOfAllUsers"        ],        "summary": "getAllCalendarEventsDueNextHourTodayOfAllUsers",        "description": "getAllCalendarEventsDueNextHourTodayOfAllUsers job running a task every round hour",        "responses": {          "200": {            "description": "successful operation"          },          "400": {            "description": "Invalid username supplied"          },          "404": {            "description": "User not found"          },          "500": {            "description": "User not found"          }        }      }    }  },  "securityDefinitions": {    "api_key": {      "type": "apiKey",      "name": "api_key",      "in": "header"    },    "petstore_auth": {      "type": "oauth2",      "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",      "flow": "implicit",      "scopes": {        "read:pets": "read your pets",        "write:pets": "modify pets in your account"      }    }  },  "definitions": {    "AddTaskList": {      "type": "object",      "required": [        "requestBody"      ],      "properties": {        "requestBody": {          "type": "object",          "$ref": "#/definitions/TaskLists"        }      },      "xml": {        "name": "AddTaskList"      }    },    "AddTask": {      "type": "object",      "required": [        "requestBody",        "tasklistId"      ],      "properties": {        "requestBody": {          "type": "object",          "$ref": "#/definitions/Tasks"        },        "tasklistId": {          "type": "string"        }      },      "xml": {        "name": "AddTask"      }    },    "UpdateTaskList": {      "type": "object",      "required": [        "requestBody",        "tasklistId"      ],      "properties": {        "requestBody": {          "type": "object",          "$ref": "#/definitions/TaskLists"        },        "tasklistId": {          "type": "string"        }      },      "xml": {        "name": "UpdateTaskList"      }    },    "UpdateTask": {      "type": "object",      "required": [        "requestBody",        "tasklistId",        "taskId"      ],      "properties": {        "requestBody": {          "type": "object",          "$ref": "#/definitions/Tasks"        },        "tasklistId": {          "type": "string"        },        "taskId": {          "type": "string"        }      },      "xml": {        "name": "UpdateTask"      }    },    "Users": {      "type": "object",      "required": [        "groupId",        "accessToken",        "refreshToken",        "email",        "userId",        "tokenExpireDate"      ],      "properties": {        "groupId": {          "type": "integer",          "format": "int64"        },        "accessToken": {          "type": "string"        },        "refreshToken": {          "type": "string"        },        "createdAt": {          "type": "string",          "format": "date-time"        },        "email": {          "type": "string"        },        "tokenExpireDate": {          "type": "string",          "format": "date-time"        },        "updatedAt": {          "type": "string",          "format": "date-time"        },        "userId": {          "type": "string"        }      },      "xml": {        "name": "Users"      }    },    "Groups": {      "type": "object",      "required": [        "groupId",        "refreshToken",        "email"      ],      "properties": {        "groupId": {          "type": "integer",          "format": "int64"        },        "refreshToken": {          "type": "string"        },        "createdAt": {          "type": "string",          "format": "date-time"        },        "email": {          "type": "string"        },        "updatedAt": {          "type": "string",          "format": "date-time"        }      },      "xml": {        "name": "Groups"      }    },    "TaskLists": {      "type": "object",      "required": [        "id",        "title",        "userId"      ],      "properties": {        "createdAt": {          "type": "string",          "format": "date-time"        },        "updatedAt": {          "type": "string",          "format": "date-time"        },        "id": {          "type": "string"        },        "userId": {          "type": "string"        },        "kind": {          "type": "string"        },        "etag": {          "type": "string"        },        "title": {          "type": "string"        },        "updated": {          "type": "string"        },        "selfLink": {          "type": "string"        }      },      "xml": {        "name": "TaskLists"      }    },    "Tasks": {      "type": "object",      "required": [        "id",        "parent_id",        "parent",        "userId",        "title"      ],      "properties": {        "deleted": {          "type": "boolean"        },        "hidden": {          "type": "boolean"        },        "parent_id": {          "type": "string"        },        "parent": {          "type": "string"        },        "position": {          "type": "string"        },        "notes": {          "type": "string"        },        "status": {          "type": "string"        },        "due": {          "type": "string"        },        "completed": {          "type": "string"        },        "userId": {          "type": "string"        },        "createdAt": {          "type": "string",          "format": "date-time"        },        "updatedAt": {          "type": "string",          "format": "date-time"        },        "id": {          "type": "string"        },        "kind": {          "type": "string"        },        "etag": {          "type": "string"        },        "title": {          "type": "string"        },        "updated": {          "type": "string"        },        "selfLink": {          "type": "string"        }      },      "xml": {        "name": "Tasks"      }    },    "AudioUrl": {      "type": "object",      "required": [        "audioUrl"      ],      "properties": {        "audioUrl": {          "type": "string"        }      },      "xml": {        "name": "AudioUrl"      }    }  },  "externalDocs": {    "description": "Find out more about Swagger",    "url": "http://swagger.io"  }}
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters. types by https://swagger.io/docs/specification/data-models/data-types",
+    "version": "1.0.7",
+    "title": "Swagger",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "login.timesapp.biz",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Operations about users tasks",
+      "externalDocs": {
+        "description": "Find out more about our store",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user by user name",
+        "description": "",
+        "operationId": "getUserByName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "The type that needs to be fetched. Use getListById / getTaskById / getListAndTasksById",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "tasklistId",
+            "in": "query",
+            "description": "The tasklistId that needs to be fetched.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "taskId",
+            "in": "query",
+            "description": "The taskId that needs to be fetched.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user. ",
+        "operationId": "deleteUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "The type: clearAllTasks / deleteTask / deleteOneList / ",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "tasklistId",
+            "in": "query",
+            "description": "The tasklistId that needs to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "taskId",
+            "in": "query",
+            "description": "The name that needs to be deleted",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/add-task-list/{userId}": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "userId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestBody",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTaskList"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TaskLists"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        }
+      }
+    },
+    "/users/update-task-list/{userId}": {
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "userId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestBody",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTaskList"
+            }
+          },
+          {
+            "in": "body",
+            "name": "tasklistId",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TaskLists"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        }
+      }
+    },
+    "/users/add-task/{userId}": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "userId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "requestBody",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTask"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Tasks"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        }
+      }
+    },
+    "/users/update-task/{userId}": {
+      "patch": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Place an order for a pet",
+        "description": "",
+        "operationId": "userId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "order placed for purchasing the pet",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTask"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Tasks"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        }
+      }
+    },
+    "/users/calendar-next-hour-events-list/{userId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get calendar-next-hour-events-list of user",
+        "description": "",
+        "operationId": "getUserByName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/calendar-list/{userId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get calendar-list of user",
+        "description": "",
+        "operationId": "getUserByName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/users/speech-to-text/{userId}": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Speech-to-text",
+        "description": "",
+        "operationId": "userId",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/text"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of userId to return",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "audioUrl",
+            "description": "audioUrl",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AudioUrl"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/TaskLists"
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        }
+      }
+    },
+
+    "/updateAllUsersByUpdatedTasks": {
+      "get": {
+        "tags": [
+          "updateAllUsersByUpdatedTasks"
+        ],
+        "summary": "updateAllUsersByUpdatedTasks",
+        "description": "updateAllUsersByUpdatedTasks running a task every 20 min job",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/getAllTasksDueTodayOfAllUsers": {
+      "get": {
+        "tags": [
+          "getAllTasksDueTodayOfAllUsers"
+        ],
+        "summary": "getAllTasksDueTodayOfAllUsers",
+        "description": "getAllTasksDueTodayOfAllUsers running a task every day at 8:00 am - Asia/Tel_Aviv timezone",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/getAllCalendarEventsDueNextHourTodayOfAllUsers": {
+      "get": {
+        "tags": [
+          "getAllCalendarEventsDueNextHourTodayOfAllUsers"
+        ],
+        "summary": "getAllCalendarEventsDueNextHourTodayOfAllUsers",
+        "description": "getAllCalendarEventsDueNextHourTodayOfAllUsers job running a task every round hour",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "User not found"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
+      "flow": "implicit",
+      "scopes": {
+        "read:pets": "read your pets",
+        "write:pets": "modify pets in your account"
+      }
+    }
+  },
+  "definitions": {
+    "AddTaskList": {
+      "type": "object",
+      "required": [
+        "requestBody"
+      ],
+      "properties": {
+        "requestBody": {
+          "type": "object",
+          "$ref": "#/definitions/TaskLists"
+        }
+      },
+      "xml": {
+        "name": "AddTaskList"
+      }
+    },
+    "AddTask": {
+      "type": "object",
+      "required": [
+        "requestBody",
+        "tasklistId"
+      ],
+      "properties": {
+        "requestBody": {
+          "type": "object",
+          "$ref": "#/definitions/Tasks"
+        },
+        "tasklistId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "AddTask"
+      }
+    },
+    "UpdateTaskList": {
+      "type": "object",
+      "required": [
+        "requestBody",
+        "tasklistId"
+      ],
+      "properties": {
+        "requestBody": {
+          "type": "object",
+          "$ref": "#/definitions/TaskLists"
+        },
+        "tasklistId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "UpdateTaskList"
+      }
+    },
+    "UpdateTask": {
+      "type": "object",
+      "required": [
+        "requestBody",
+        "tasklistId",
+        "taskId"
+      ],
+      "properties": {
+        "requestBody": {
+          "type": "object",
+          "$ref": "#/definitions/Tasks"
+        },
+        "tasklistId": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "UpdateTask"
+      }
+    },
+    "Users": {
+      "type": "object",
+      "required": [
+        "groupId",
+        "accessToken",
+        "refreshToken",
+        "email",
+        "userId",
+        "tokenExpireDate"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "accessToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string"
+        },
+        "tokenExpireDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Users"
+      }
+    },
+    "Groups": {
+      "type": "object",
+      "required": [
+        "groupId",
+        "refreshToken",
+        "email"
+      ],
+      "properties": {
+        "groupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "refreshToken": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "email": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "xml": {
+        "name": "Groups"
+      }
+    },
+    "TaskLists": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "userId"
+      ],
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "etag": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "TaskLists"
+      }
+    },
+    "Tasks": {
+      "type": "object",
+      "required": [
+        "id",
+        "parent_id",
+        "parent",
+        "userId",
+        "title"
+      ],
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "parent": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "due": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "etag": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "updated": {
+          "type": "string"
+        },
+        "selfLink": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Tasks"
+      }
+    },
+    "AudioUrl": {
+      "type": "object",
+      "required": [
+        "audioUrl"
+      ],
+      "properties": {
+        "audioUrl": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "AudioUrl"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

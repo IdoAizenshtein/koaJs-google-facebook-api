@@ -1,1 +1,18 @@
-runtime: nodejs18env_variables:  INSTANCE_UNIX_SOCKET:  DB_USER: postgres  DB_PASS:  DB_NAME: postgres#handlers:#  - url: /#    static_dir: public##  - url: /.*#    secure: always#    redirect_http_response_code: 301#    script: auto
+runtime: nodejs18
+env_variables:
+  INSTANCE_UNIX_SOCKET:
+  DB_USER: postgres
+  DB_PASS:
+  DB_NAME: postgres
+#handlers:
+#  - url: /
+#    static_dir: public
+#
+#  - url: /.*
+#    secure: always
+#    redirect_http_response_code: 301
+#    script: auto
+
+
+
+

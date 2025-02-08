@@ -1,1 +1,7 @@
-User-agent: GooglebotDisallow: /nogooglebot/User-agent: *Allow: /Sitemap: https://login.timesapp.biz/sitemap.xml
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://login.timesapp.biz/sitemap.xml
