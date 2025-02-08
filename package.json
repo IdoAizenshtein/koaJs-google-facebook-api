@@ -1,0 +1,43 @@
+{
+  "name": "google-tasks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "TZ='Asia/Jerusalem' nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/local-auth": "^3.0.1",
+    "@google-cloud/speech": "^6.5.0",
+    "@google-cloud/storage": "^7.8.0",
+    "@googleapis/calendar": "^9.7.0",
+    "@green-api/whatsapp-api-client": "^0.3.39",
+    "@koa/bodyparser": "^5.0.0",
+    "@koa/cors": "^5.0.0",
+    "@koa/router": "^12.0.1",
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
+    "google-auth-library": "^9.6.3",
+    "googleapis": "^134.0.0",
+    "googleapis-common": "^7.0.0",
+    "koa": "^2.15.0",
+    "koa-mount": "^4.0.0",
+    "koa-static": "^5.0.0",
+    "koa2-swagger-ui": "^5.10.0",
+    "nconf": "^0.12.0",
+    "node-cron": "^3.0.3",
+    "nodemon": "^3.1.0",
+    "open": "^10.1.0",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "process": "^0.11.10",
+    "sequelize": "^6.37.1",
+    "server-destroy": "^1.0.1",
+    "uuid": "^9.0.0",
+    "whatsapp": "^0.0.5-Alpha"
+  }
+}
